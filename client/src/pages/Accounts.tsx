@@ -2,6 +2,7 @@ import  { useEffect, useState } from 'react'
 import {dummyAccountsData, PLATFORMS} from '../assets/assets'
 import { PlusIcon } from 'lucide-react'
 import AccountList from '../components/AccountList'
+import PlatformPickerModal from '../components/PlatformPickerModal'
 
 const Accounts = () => {
   const [accounts, setAccounts] = useState<any[]>([])
@@ -11,7 +12,6 @@ const Accounts = () => {
   const fetchAccounts = async (isSync = false, platform?: string | null, successMsg?:
     string)=> {
       setAccounts(dummyAccountsData);
-      console.log(isSync, platform, successMsg)
     }
 
     useEffect(()=>{
@@ -22,17 +22,20 @@ const Accounts = () => {
     const handleConnect = async (platformId: string)=>{
       setConnecting(platformId);
       setTimeout(()=>{
+        const accountToAdd = dummyAccountsData.find((a) => a.platform === platformId);
+        if(accountToAdd) {
+          setAccounts((prev)=> [...prev, accountToAdd])
+        }
         setConnecting(null)
-        setAccounts((prev)=> [...prev, dummyAccountsData[0]])
         setShowPlatformPicker(false)
-      },1000)
+      },300)
 
     }
 
   
 
   const handleDisconnect = async (accountId: string) =>{
-    setAccounts(accounts.filter((a)=>a.id !== accountId))
+    setAccounts(accounts.filter((a)=>a._id !== accountId))
   }
 
   const connectedIds = accounts.map((a)=>a.platform)
@@ -49,7 +52,7 @@ const Accounts = () => {
             </h2>
             <p className="text-slate-500 text-sm mt-0.5">{accounts.length} of {PLATFORMS.length} platforms connected</p>
           </div>
-          <button onClick={()=> setShowPlatformPicker} 
+          <button onClick={()=> setShowPlatformPicker(true)} 
             className="flex items-center gap-2 px-5 py-2.5 bg-red-500
             hover:bg-red-600 text-white rounded-full font-medium transition-all w-full sm:w-auto justify-center
             ">
@@ -58,6 +61,8 @@ const Accounts = () => {
         </div>
 
         {/* Platform picker modal */}
+        {showPlatformPicker && <PlatformPickerModal connectedIds={connectedIds} connecting={connecting}
+        onClose={()=> setShowPlatformPicker(false)} onConnect={handleConnect} />}
 
 
         {/* connected accounts list */}
