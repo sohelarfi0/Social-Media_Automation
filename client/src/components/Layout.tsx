@@ -6,14 +6,22 @@ import { Outlet, useLocation } from 'react-router-dom'
 const pageTitles: Record<string, string> = {
   "/dashboard": "Dashboard",
   "/accounts": "Social Accounts",
-  "/schedule": "Post Schedule",
+  "/schedule": "Post Scheduler",
   "/ai-composer": "AI Composer"
+}
+
+const pageSubtitles: Record<string, string> = {
+  "/dashboard": "Monitor and track your social media performance",
+  "/accounts": "Manage your connected social media accounts",
+  "/schedule": "Schedule and manage your posts",
+  "/ai-composer": "Create engaging content with AI"
 }
 
 const Layout = () => {
   const location = useLocation()
 
-  const title = pageTitles[location.pathname] || "SocialAI";
+  const title = pageTitles[location.pathname] || "Post Scheduler";
+  const subtitle = pageSubtitles[location.pathname] || "Manage and automate your social presence"
   const  [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   return (
     <div className = "flex h-screen bg-slate-50">
@@ -26,21 +34,19 @@ const Layout = () => {
 
       <div className = "flex-1 flex flex-col overflow-hidden">
         {/* Top Bar */}
-        <header className='h-16 bg-white border-b border-slate-200 flex items-center px-4
-        md:px-8 gap-4' >
-
-          <button 
-          className="md:hidden p-2 -ml-2 text-slate-500" 
-          onClick={()=>setIsMobileMenuOpen(true)}>
-            <MenuIcon className = "size-6" />
-          </button>
+        <header className='h-auto bg-white border-b border-slate-200 px-4 md:px-8' >
+          <div className="flex items-center py-4 gap-4 border-b border-slate-100 md:border-0">
+            <button 
+            className="md:hidden p-2 -ml-2 text-slate-500" 
+            onClick={()=>setIsMobileMenuOpen(true)}>
+              <MenuIcon className = "size-6" />
+            </button>
+          </div>
+          <div className="py-4">
+            <h1 className='text-2xl font-bold text-slate-900'>{title}</h1>
+            <p className='text-sm text-slate-400 mt-1'>{subtitle}</p>
+          </div>
         </header>
-        <div>
-          <h1 className='text-slate-900'>{title}</h1>
-          <p className='text-sm text-slate-400 hidden sm:block'>Manage and automate your social presence</p>
-
-
-        </div>
         <main className = "flex-1 overflow-auto p-4 sm:p-6 md:p-8 xl:p-12">
           <Outlet />
 

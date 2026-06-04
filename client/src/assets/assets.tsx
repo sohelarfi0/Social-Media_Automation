@@ -76,7 +76,7 @@ export const dummyPostsData: any = [
         _id: "6a044112d7bb966a9a9a6de1",
         user: "69fd96aea59dd584d3587a1d",
         content:
-            "Exciting Opportunity: Data Analyst!\n\nAre you a highly analytical professional passionate about transforming complex data into strategic insights? We're looking for a talented and experienced Data Analyst to join our innovative team and drive data-driven decisions.\n\nIn this role, you will leverage your expertise in SQL, Python/R, and cutting-edge data visualization tools to uncover key trends, build insightful reports, and inform critical business strategies. If you're a problem-solver who thrives on making a tangible impact, we encourage you to apply!\n\nDiscover more and submit your application today. [Link to careers page/Apply Here]\n\n#DataAnalyst #Hiring #JobOpportunity #Career #DataScience #Analytics #BusinessIntelligence #TechJobs #NowHiring",
+            "Sample LinkedIn post content",
         platforms: ["linkedin"],
         mediaUrl: img_1,
         mediaType: "image",
@@ -89,7 +89,7 @@ export const dummyPostsData: any = [
         _id: "6a0448d9d7bb966a9a9a6de4",
         user: "69fd96aea59dd584d3587a1d",
         content:
-            "Exciting Opportunity: Data Analyst!\n\nAre you a highly analytical professional passionate about transforming complex data into strategic insights? We're looking for a talented and experienced Data Analyst to join our innovative team and drive data-driven decisions.\n\nIn this role, you will leverage your expertise in SQL, Python/R, and cutting-edge data visualization tools to uncover key trends, build insightful reports, and inform critical business strategies. If you're a problem-solver who thrives on making a tangible impact, we encourage you to apply!\n\nDiscover more and submit your application today. [Link to careers page/Apply Here]\n\n#DataAnalyst #Hiring #JobOpportunity #Career #DataScience #Analytics #BusinessIntelligence #TechJobs #NowHiring",
+            "Sample Instagram post content",
         platforms: ["instagram"],
         mediaUrl: img_2,
         mediaType: "image",
@@ -102,7 +102,7 @@ export const dummyPostsData: any = [
         _id: "6a0c1d4232d96fd9b1e904e2",
         user: "69fd96aea59dd584d3587a1d",
         content:
-            "Exciting Opportunity: Data Analyst!\n\nAre you a highly analytical professional passionate about transforming complex data into strategic insights? We're looking for a talented and experienced Data Analyst to join our innovative team and drive data-driven decisions.\n\nIn this role, you will leverage your expertise in SQL, Python/R, and cutting-edge data visualization tools to uncover key trends, build insightful reports, and inform critical business strategies. If you're a problem-solver who thrives on making a tangible impact, we encourage you to apply!\n\nDiscover more and submit your application today. [Link to careers page/Apply Here]\n\n#DataAnalyst #Hiring #JobOpportunity #Career #DataScience #Analytics #BusinessIntelligence #TechJobs #NowHiring",
+            "Sample Instagram post content",
         platforms: ["instagram"],
         mediaUrl: img_3,
         mediaType: "image",
@@ -128,7 +128,7 @@ export const dummyPostsData: any = [
         _id: "6a0c52f4a6bca2a802e1d491",
         user: "69fd96aea59dd584d3587a1d",
         content:
-            "Exciting Opportunity: Data Analyst!\n\nAre you a highly analytical professional passionate about transforming complex data into strategic insights? We're looking for a talented and experienced Data Analyst to join our innovative team and drive data-driven decisions.\n\nIn this role, you will leverage your expertise in SQL, Python/R, and cutting-edge data visualization tools to uncover key trends, build insightful reports, and inform critical business strategies. If you're a problem-solver who thrives on making a tangible impact, we encourage you to apply!\n\nDiscover more and submit your application today. [Link to careers page/Apply Here]\n\n#DataAnalyst #Hiring #JobOpportunity #Career #DataScience #Analytics #BusinessIntelligence #TechJobs #NowHiring",
+            "Check out our latest product update! We're excited to announce new features that will help you manage your social media more effectively.",
         platforms: ["facebook"],
         mediaUrl: img_1,
         mediaType: "image",
@@ -184,7 +184,7 @@ export const dummyActivityData = [
         relatedPost: {
             _id: "6a0c1d4232d96fd9b1e904e2",
             content:
-                "Exciting Opportunity: Data Analyst!\n\nAre you a highly analytical professional passionate about transforming complex data into strategic insights? We're looking for a talented and experienced Data Analyst to join our innovative team and drive data-driven decisions.\n\nIn this role, you will leverage your expertise in SQL, Python/R, and cutting-edge data visualization tools to uncover key trends, build insightful reports, and inform critical business strategies. If you're a problem-solver who thrives on making a tangible impact, we encourage you to apply!\n\nDiscover more and submit your application today. [Link to careers page/Apply Here]\n\n#DataAnalyst #Hiring #JobOpportunity #Career #DataScience #Analytics #BusinessIntelligence #TechJobs #NowHiring",
+                "Sample activity post content",
         },
         createdAt: "2026-05-19T08:21:06.200Z",
         updatedAt: "2026-05-19T08:21:06.200Z",
@@ -197,7 +197,7 @@ export const dummyActivityData = [
         relatedPost: {
             _id: "6a0448d9d7bb966a9a9a6de4",
             content:
-                "Exciting Opportunity: Data Analyst!\n\nAre you a highly analytical professional passionate about transforming complex data into strategic insights? We're looking for a talented and experienced Data Analyst to join our innovative team and drive data-driven decisions.\n\nIn this role, you will leverage your expertise in SQL, Python/R, and cutting-edge data visualization tools to uncover key trends, build insightful reports, and inform critical business strategies. If you're a problem-solver who thrives on making a tangible impact, we encourage you to apply!\n\nDiscover more and submit your application today. [Link to careers page/Apply Here]\n\n#DataAnalyst #Hiring #JobOpportunity #Career #DataScience #Analytics #BusinessIntelligence #TechJobs #NowHiring",
+                "Sample activity post content",
         },
         createdAt: "2026-05-13T09:49:15.551Z",
         updatedAt: "2026-05-13T09:49:15.551Z",
@@ -210,7 +210,7 @@ export const dummyActivityData = [
         relatedPost: {
             _id: "6a044112d7bb966a9a9a6de1",
             content:
-                "Exciting Opportunity: Data Analyst!\n\nAre you a highly analytical professional passionate about transforming complex data into strategic insights? We're looking for a talented and experienced Data Analyst to join our innovative team and drive data-driven decisions.\n\nIn this role, you will leverage your expertise in SQL, Python/R, and cutting-edge data visualization tools to uncover key trends, build insightful reports, and inform critical business strategies. If you're a problem-solver who thrives on making a tangible impact, we encourage you to apply!\n\nDiscover more and submit your application today. [Link to careers page/Apply Here]\n\n#DataAnalyst #Hiring #JobOpportunity #Career #DataScience #Analytics #BusinessIntelligence #TechJobs #NowHiring",
+                "Sample activity post content",
         },
         createdAt: "2026-05-13T09:15:05.134Z",
         updatedAt: "2026-05-13T09:15:05.134Z",
@@ -256,7 +256,7 @@ export const dummyGenerationData = [
         user: "69fd96aea59dd584d3587a1d",
         prompt: "create a post for Job Hiring for Data Analyst",
         content:
-            "Exciting Opportunity: Data Analyst!\n\nAre you a highly analytical professional passionate about transforming complex data into strategic insights? We're looking for a talented and experienced Data Analyst to join our innovative team and drive data-driven decisions.\n\nIn this role, you will leverage your expertise in SQL, Python/R, and cutting-edge data visualization tools to uncover key trends, build insightful reports, and inform critical business strategies. If you're a problem-solver who thrives on making a tangible impact, we encourage you to apply!\n\nDiscover more and submit your application today. [Link to careers page/Apply Here]\n\n#DataAnalyst #Hiring #JobOpportunity #Career #DataScience #Analytics #BusinessIntelligence #TechJobs #NowHiring",
+            "Sample generated post content",
         mediaUrl: img_1,
         mediaType: "image",
         tone: "Professional",
