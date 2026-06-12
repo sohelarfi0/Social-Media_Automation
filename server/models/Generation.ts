@@ -1,0 +1,17 @@
+import mongoose from "mongoose";
+import { platform } from "node:os";
+
+const generationSchema = new mongoose.Schema({
+    user: {type: mongoose.Schema.Types.ObjectId, 
+        ref: "User", required: true},
+        prompt: {type:String, required: true},
+        content: {type: String, required: true},
+        mediaUrl: {type: String},
+        mediatype: {type: String, enum: ["image", "video"]},
+        tone: {type: String},
+       
+    
+}, {timestamps: true})
+
+
+export const Generation = mongoose.model("Generation", generationSchema)
