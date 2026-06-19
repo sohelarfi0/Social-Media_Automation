@@ -224,7 +224,7 @@ export const schedulePost = async (req: AuthRequest, res: Response): Promise<voi
             platforms: parsedPlatforms,
             mediaUrl,
             mediaType,
-            scheduleFor,
+            scheduledFor,
             status,
         })
         
