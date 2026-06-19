@@ -6,10 +6,12 @@ import AIComposer from "./pages/AIComposer.tsx";
 import Dashboard from "./pages/Dashboard.tsx";
 import Accounts from "./pages/Accounts.tsx";
 import Scheduler from "./pages/Scheduler.tsx";
+import { Toaster } from "react-hot-toast";
 
 export default function App() {
     return (
         <>
+        <Toaster position="top-right"/>
             <Routes>
                 <Route path="/" element={<Home />} />
                 <Route path="/home" element={<Home />} />
