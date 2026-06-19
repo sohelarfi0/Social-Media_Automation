@@ -2,6 +2,10 @@ import { Response } from "express";
 import {AuthRequest} from "../middlewares/authMiddleware.js";
 import { GoogleGenAI } from "@google/genai";
 import axios from "axios";
+import { cloudinary } from "../config/cloudinary.js";
+import { Generation } from "../models/Generation.js";
+import { Post } from "../models/Post.js";
+import { resolve } from "node:dns";
 
 
 // Helper to poll leonardo.ai
@@ -33,12 +37,14 @@ const pollLeonardoJob = async (generationId: string, apiKey:string): Promise<voi
             
 
         }
+        await new Promise((resolve)=> setTimeout(resolve, delay));
     }
+    throw new Error("Leonardo.ai generation timed out.")
 }
 
 // Generate post
 // POST /api/posts/genrate
-export const genratePost = async (req: AuthRequest, res: Response): Promise<void> =>{
+export const generatePost = async (req: AuthRequest, res: Response): Promise<void> =>{
     try{
         const {prompt, tone, genrateImage} = req.body;
 
@@ -113,18 +119,35 @@ export const genratePost = async (req: AuthRequest, res: Response): Promise<void
                 const generationId = gemResponse.data.generate.generationId;
                 const tempUrl = await pollLeonardoJob(generationId, leoKey);
                 
+
+                // Upload to cloudinary for persistence
+                const uploadResult = await cloudinary.uploader.upload(tempUrl,{
+                    folder: "ai-generations",
+                });
+                mediaUrl = uploadResult.secure_url;
             }
                 
             }
-            catch(error){
+            catch(err: any){
+                console.error("Image generation failed:", err);
 
             }
         }
+        // Save generation to DB
+        const generation = await Generation.create({
+            user: req.user._id,
+            prompt,
+            content,
+            mediaUrl,
+            mediatype: mediaUrl ? "image" : undefined,
+            tone
+        })
+        res.json(generation)
 
 
-    }catch(error){
 
-
+    }catch(error: any){
+        res.status(500).json({message: error?.message || "Server error"});
     }
 
 }
@@ -132,6 +155,14 @@ export const genratePost = async (req: AuthRequest, res: Response): Promise<void
 // Get generations 
 // GET /api/posts/generation
 export const getGenrations = async (req: AuthRequest, res: Response): Promise<void> => {
+    try {
+        const generations = await Generation.find({user: req.user._id}).sort({createdAT: -1})
+        res.json(generations)
+        
+    } catch (error: any) {
+        res.status(500).json({message: error?.message || "Server error"});
+        
+    }
     
 } 
 
@@ -139,11 +170,68 @@ export const getGenrations = async (req: AuthRequest, res: Response): Promise<vo
 // Get posts 
 // GET /api/posts
 export const getPosts = async (req: AuthRequest, res: Response): Promise<void> => {
+try {
+    const posts = await Post.find({user: req.user._id})
+    res.json(posts)
 
+    
+} catch (error: any) {
+    res.status(500).json({message: error?.message || "Server error"});
+
+    
+}
 } 
 
 // Scheduled posts 
 // POST /api/posts
-export const scheduledPost = async (req: AuthRequest, res: Response): Promise<void> => {
+export const schedulePost = async (req: AuthRequest, res: Response): Promise<void> => {
+    try {
+        const {content, platforms, scheduledFor, status} = req.body;
+
+        // Parse platforms if it comes as a stringified array from FormData
+        let parsedPlatforms = platforms;
+        if(typeof platforms === "string"){
+            try {
+                parsedPlatforms = JSON.parse(platforms)
+                
+            } catch (e) {
+                parsedPlatforms = platforms.split(",");
+                
+            }
+
+        }
+        let mediaUrl: string | undefined = req.body.mediaUrl;
+        let mediaType: "image" | "video" | undefined = req.body.mediaType;
+
+        if(req.file){
+            const result = await new Promise<any> ((resolve, reject)=>{
+                const stream = cloudinary.uploader.upload_stream({resource_type: "auto",
+                    folder: "social-scheduler"
+                },(error, result)=>{
+                    if(error) reject(error);
+                    else resolve(result)
+                });
+                stream.end(req.file!.buffer);
+            });
+            mediaUrl = result.secure_url;
+            mediaType = result.resource_type === "video" ? "video" : "image" ;
+
+        }
+
+        const post = await Post.create({
+            user: req.user._id,
+            content,
+            platforms: parsedPlatforms,
+            mediaUrl,
+            mediaType,
+            scheduleFor,
+            status,
+        })
+        
+    } catch (error: any) {
+        res.status(500).json({message: error?.message || "Server error"});
+
+        
+    }
 
 } 
