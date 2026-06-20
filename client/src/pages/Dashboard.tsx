@@ -1,6 +1,9 @@
 import {useEffect, useState } from 'react'
 import {ActivityIcon, CheckCircleIcon, ClockIcon,SendIcon,Share2Icon, TrendingUpIcon} from 'lucide-react'
-import {dummyAccountsData, dummyActivityData, dummyPostsData} from '../assets/assets'
+import api from '../api/axios'
+
+
+
 const Dashboard = () => {
 
   const [stats, setStats] = useState({scheduled: 0, published: 0, connectedAccounts: 0})
@@ -10,7 +13,7 @@ const Dashboard = () => {
   useEffect(()=>{
     const fetchDashboardData = async () => {
       try{
-        const [postsRes, accountsRes, activityRes] = [{data: dummyPostsData}, {data: dummyAccountsData}, {data: dummyActivityData}]
+        const [postsRes, accountsRes, activityRes] = await Promise.all([api.get("/api/post"),api.get("/api/accounts"),api.get("/api/activity")])
 
         const posts = postsRes.data;
         setStats({
